@@ -1,23 +1,7 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "api/query.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "index.html",
-      "use": "@vercel/static"
-    }
-  ],
   "routes": [
-    {
-      "src": "/api/query",
-      "dest": "/api/query.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
-    }
+    { "src": "/api/query", "dest": "/api/query.js" },
+    { "src": "/(.*)", "dest": "/index.html" }
   ]
 }

@@ -171,6 +171,49 @@ nav::-webkit-scrollbar{display:none}
 .meta-item{font-size:0.78rem;color:var(--text-muted)}
 .meta-item strong{color:var(--text-secondary);display:block;margin-bottom:0.1rem}
 
+/* ── EXEC SUMMARY ────────────────────────── */
+.exec-summary{
+  max-width:860px;margin:0 auto;
+  padding:2.5rem 2rem;
+  border-bottom:1px solid var(--border);
+}
+.exec-summary-label{
+  font-size:0.68rem;font-weight:800;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:1rem;
+}
+.exec-summary h2{
+  font-size:1.1rem;font-weight:700;
+  letter-spacing:-0.01em;
+  margin-bottom:1.5rem;
+  color:var(--text-secondary);
+  font-weight:400;
+  font-style:italic;
+}
+.exec-points{display:flex;flex-direction:column;gap:1.1rem}
+.exec-point{
+  display:grid;
+  grid-template-columns:2.5rem 1fr;
+  gap:0 0.75rem;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:1.1rem 1.25rem;
+}
+.exec-point-num{
+  color:var(--accent);
+  font-weight:800;font-size:0.8rem;
+  padding-top:0.15rem;
+}
+.exec-point-body{font-size:0.88rem;line-height:1.7;color:var(--text-secondary)}
+.exec-point-body strong{color:var(--text)}
+.exec-point-body a{
+  color:var(--accent);text-decoration:none;
+  border-bottom:1px solid var(--accent-dim);
+  transition:border-color 0.15s;
+}
+.exec-point-body a:hover{border-color:var(--accent)}
+
 /* ── CORPUS STRIP ─────────────────────────── */
 .corpus{
   max-width:860px;
@@ -320,11 +363,17 @@ nav::-webkit-scrollbar{display:none}
   font-size:0.72rem;font-weight:600;
   letter-spacing:0.04em;text-transform:uppercase;
   white-space:nowrap;
-  width:160px;
+  width:130px;
 }
-.td-us{color:var(--text-secondary)}
-.td-uk{color:var(--text);font-weight:500}
-.td-link{white-space:nowrap}
+.td-us{color:var(--text-secondary);width:160px}
+.td-uk{color:var(--text);font-weight:500;width:180px}
+.td-why{
+  color:var(--text-secondary);
+  font-size:0.81rem;
+  line-height:1.55;
+}
+.td-why strong{color:var(--text)}
+.td-link{white-space:nowrap;width:1px}
 .matrix-link{
   display:inline-flex;align-items:center;gap:0.3rem;
   color:var(--accent);
@@ -416,13 +465,13 @@ footer{
 
 <nav>
   <span class="nav-brand">🇬🇧 Incorruptible UK</span>
+  <a class="nav-link" href="#summary">Summary</a>
   <a class="nav-link" href="#s1">Legal</a>
   <a class="nav-link" href="#s2">Funding</a>
   <a class="nav-link" href="#s3">Scale-up</a>
   <a class="nav-link" href="#s4">Governance</a>
   <a class="nav-link" href="#s5">Talent</a>
   <a class="nav-link" href="#s6">Investors</a>
-  <a class="nav-link" href="#s7">Briefing</a>
   <a class="nav-link" href="#matrix">Matrix</a>
   <a class="nav-link" href="#bibliography">Sources</a>
   <div class="nav-spacer"></div>
@@ -430,13 +479,41 @@ footer{
 </nav>
 
 <div class="hero">
-  <div class="hero-tag">📋 Seven Findings</div>
+  <div class="hero-tag">📋 Six Findings</div>
   <h1>Why <em>Incorruptible</em> matters<br>to UK AI founders right now</h1>
   <p class="hero-sub">Eric Ries's framework — translated from US defaults into UK company law, UK investors, UK market data, and the live policy shifts reshaping how British AI startups are built and funded.</p>
   <div class="hero-meta">
     <div class="meta-item"><strong>Prepared for</strong>Jonathan, CEO — leanstartup.co</div>
     <div class="meta-item"><strong>Source corpus</strong>Incorruptible + 9 UK documents</div>
     <div class="meta-item"><strong>Context</strong>June 2026</div>
+  </div>
+</div>
+
+<!-- ── EXECUTIVE SUMMARY ── -->
+<div class="exec-summary" id="summary">
+  <div class="exec-summary-label">🎯 Executive Summary</div>
+  <h2>The case for positioning <a href="https://leanstartup.co" target="_blank" rel="noopener">leanstartup.co</a> as the UK's Incorruptible implementation partner — now, before the window closes.</h2>
+  <div class="exec-points">
+    <div class="exec-point">
+      <span class="exec-point-num">01</span>
+      <div class="exec-point-body"><strong>The structural advantage is real.</strong> <a href="https://www.gov.uk/limited-company-formation" target="_blank" rel="noopener">UK Ltd</a> + <a href="https://www.gov.uk/tax-employee-share-schemes/enterprise-management-incentives-emis" target="_blank" rel="noopener">EMI</a> + <a href="https://www.gov.uk/guidance/venture-capital-schemes-apply-for-the-seed-enterprise-investment-scheme" target="_blank" rel="noopener">SEIS</a>/<a href="https://www.gov.uk/guidance/venture-capital-schemes-apply-to-use-the-enterprise-investment-scheme" target="_blank" rel="noopener">EIS</a> creates the most tax-efficient, founder-aligned startup structure in the G7. Incorruptible's framework maps onto this cleanly — UK founders who build with integrity architecture from day one are not just ethically sound, they are structurally advantaged over peers who retrofit governance under investor pressure.</div>
+    </div>
+    <div class="exec-point">
+      <span class="exec-point-num">02</span>
+      <div class="exec-point-body"><strong>The <a href="https://www.gov.uk/government/publications/mansion-house-accord" target="_blank" rel="noopener">Mansion House Accord</a> is the biggest capital story of the decade.</strong> £50bn+ of institutional capital entering UK growth companies requires recipients to have governance infrastructure that Accord LPs can diligence. Incorruptible is the operating framework for companies that want to be Accord-ready. No other methodology is currently positioned here — this is a first-mover opportunity for <a href="https://leanstartup.co" target="_blank" rel="noopener">leanstartup.co</a>.</div>
+    </div>
+    <div class="exec-point">
+      <span class="exec-point-num">03</span>
+      <div class="exec-point-body"><strong>The <a href="#s3">scale-up gap</a> is where Incorruptible earns its fees.</strong> UK AI startups hit the integrity inflection point at the exact moment they are most capital-constrained (Series B). This is not a problem methodology can solve retrospectively — it requires proactive implementation. The consulting engagement model that sells Incorruptible as pre-Series B infrastructure, not post-crisis remediation, is the right positioning.</div>
+    </div>
+    <div class="exec-point">
+      <span class="exec-point-num">04</span>
+      <div class="exec-point-body"><strong>UK governance culture is receptive.</strong> UK founders are more accustomed to <a href="https://www.frc.org.uk/library/standards-codes-policy/corporate-governance/uk-corporate-governance-code/" target="_blank" rel="noopener">NEDs, board oversight, and structured accountability</a> than their US counterparts. Incorruptible's framework does not land as foreign imposition — it lands as a formalisation of what good UK company culture already expects. The resistance is lower; the uptake can be faster.</div>
+    </div>
+    <div class="exec-point">
+      <span class="exec-point-num">05</span>
+      <div class="exec-point-body"><strong>The window is 18 months.</strong> The <a href="https://www.gov.uk/government/publications/mansion-house-accord" target="_blank" rel="noopener">Mansion House Accord</a> is being implemented now. The fund vehicles and co-investment frameworks that will channel Accord capital into UK growth companies are being designed in 2025–2026. <a href="https://leanstartup.co" target="_blank" rel="noopener">leanstartup.co</a> should be at the table shaping the governance expectations those vehicles embed — not responding to them after they are fixed. The time to move is now.</div>
+    </div>
   </div>
 </div>
 
@@ -466,6 +543,7 @@ footer{
         <th>Category</th>
         <th>US Default</th>
         <th>UK Equivalent</th>
+        <th>Why It Matters</th>
         <th>Resource</th>
       </tr>
     </thead>
@@ -474,6 +552,7 @@ footer{
         <td class="td-cat">Corporate Structure</td>
         <td class="td-us">Delaware C-Corporation</td>
         <td class="td-uk">UK Private Limited Company (Ltd)</td>
+        <td class="td-why">Forming as UK Ltd preserves access to <strong>SEIS/EIS investor tax relief and EMI options</strong> — both unavailable once you flip to Delaware. A Delaware entity also triggers ongoing US tax filing obligations and franchise tax, with no benefit unless you're actively raising from US institutional investors.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://www.gov.uk/limited-company-formation" target="_blank" rel="noopener">Companies House</a>
           <a class="matrix-link" href="https://seedlegals.com" target="_blank" rel="noopener">SeedLegals</a>
@@ -483,6 +562,7 @@ footer{
         <td class="td-cat">Investment Agreement</td>
         <td class="td-us">SAFE Note</td>
         <td class="td-uk">ASA — Advanced Subscription Agreement</td>
+        <td class="td-why">Using a US SAFE with UK investors can <strong>disqualify SEIS/EIS relief</strong> — costing your investors up to 50% tax relief on their stake. ASAs are structurally equivalent but HMRC-compatible. Seedlegals publishes a standard version accepted by Balderton-grade Series A investors.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://seedlegals.com/resources/what-is-an-advanced-subscription-agreement/" target="_blank" rel="noopener">ASA Guide</a>
         </td>
@@ -491,6 +571,7 @@ footer{
         <td class="td-cat">Employee Equity</td>
         <td class="td-us">Stock Options (ISO / NSO)</td>
         <td class="td-uk">EMI Options — Enterprise Management Incentives</td>
+        <td class="td-why">EMI gains are taxed at <strong>10% CGT</strong> vs. income tax rates (up to 45%) on unapproved options. Up to £250k per employee, £3m total pool. Free to set up. The most powerful retention tool available to a UK startup — and one that US-incorporated companies cannot offer to UK employees.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://www.gov.uk/tax-employee-share-schemes/enterprise-management-incentives-emis" target="_blank" rel="noopener">HMRC EMI</a>
         </td>
@@ -499,6 +580,7 @@ footer{
         <td class="td-cat">Equity Valuation</td>
         <td class="td-us">409A Valuation</td>
         <td class="td-uk">HMRC EMI Scheme Valuation (share valuation agreement)</td>
+        <td class="td-why">Unlike 409A (adversarial, annually renewed), HMRC <strong>pre-agrees your share price</strong>, giving employees certainty on their tax position before they exercise. Valid for up to 10 years in some cases. Removes a major source of employee anxiety and dispute.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://www.gov.uk/guidance/employee-tax-advantaged-share-scheme-user-manual-etassum20000" target="_blank" rel="noopener">HMRC Guidance</a>
         </td>
@@ -507,6 +589,7 @@ footer{
         <td class="td-cat">Investor Tax Relief</td>
         <td class="td-us">No direct equivalent</td>
         <td class="td-uk">SEIS (Seed) / EIS (Early-stage) — up to 50% / 30% income tax relief</td>
+        <td class="td-why"><strong>Unique to the UK</strong> and with no US equivalent. SEIS effectively halves an angel's risk — a £100k cheque costs them £50k after relief. This meaningfully expands the pool of investors willing to back you at seed stage. Losing eligibility through poor structuring is one of the most avoidable and costly early mistakes a UK founder makes.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://www.gov.uk/guidance/venture-capital-schemes-apply-for-the-seed-enterprise-investment-scheme" target="_blank" rel="noopener">SEIS</a>
           <a class="matrix-link" href="https://www.gov.uk/guidance/venture-capital-schemes-apply-to-use-the-enterprise-investment-scheme" target="_blank" rel="noopener">EIS</a>
@@ -516,6 +599,7 @@ footer{
         <td class="td-cat">R&amp;D Tax Incentives</td>
         <td class="td-us">US R&amp;D Tax Credits</td>
         <td class="td-uk">HMRC R&amp;D Tax Relief — SME Scheme &amp; RDEC</td>
+        <td class="td-why">UK SMEs can recover up to <strong>33% of qualifying R&D spend as cash</strong> — even while loss-making. For an AI startup spending £500k/year on model development, that's £165k back annually. More generous and more accessible than US equivalents. Chronically underused by founders who assume it's complicated.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://www.gov.uk/guidance/corporation-tax-research-and-development-rd-relief" target="_blank" rel="noopener">HMRC R&amp;D</a>
         </td>
@@ -524,6 +608,7 @@ footer{
         <td class="td-cat">Financial Regulator</td>
         <td class="td-us">SEC (Securities and Exchange Commission)</td>
         <td class="td-uk">FCA — Financial Conduct Authority</td>
+        <td class="td-why">The FCA regulates financial promotions, investor protections, and — increasingly — AI systems used in financial services. UK AI founders building anything adjacent to fintech, insurance, or lending need to understand <strong>FCA perimeter rules early</strong>; breaching them without a licence is a criminal offence, not a civil one.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://www.fca.org.uk" target="_blank" rel="noopener">FCA</a>
         </td>
@@ -532,6 +617,7 @@ footer{
         <td class="td-cat">Company Law</td>
         <td class="td-us">Delaware General Corporation Law</td>
         <td class="td-uk">Companies Act 2006</td>
+        <td class="td-why">Director duties in the UK are <strong>codified in statute</strong> (s.172–177 Companies Act), not just evolving case law. This makes governance expectations clearer and more predictable. Critically, s.172 requires directors to act in the interests of the company's long-term success — a statutory hook for Incorruptible's integrity framework.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://www.legislation.gov.uk/ukpga/2006/46/contents" target="_blank" rel="noopener">Legislation.gov.uk</a>
         </td>
@@ -540,6 +626,7 @@ footer{
         <td class="td-cat">Accelerators</td>
         <td class="td-us">Y Combinator, Techstars</td>
         <td class="td-uk">Seedcamp, Entrepreneur First, Founders Factory</td>
+        <td class="td-why">UK VCs weight EF and Seedcamp alumni status as a <strong>credibility signal equivalent to YC</strong> within European deal flow. EF in particular is the primary pipeline for deep tech and AI talent-first companies — its alumni include Faculty AI, Magic Pony, and Tractable. Founders Factory offers a corporate-backed model with built-in distribution partners.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://seedcamp.com" target="_blank" rel="noopener">Seedcamp</a>
           <a class="matrix-link" href="https://www.joinef.com" target="_blank" rel="noopener">EF</a>
@@ -550,6 +637,7 @@ footer{
         <td class="td-cat">Seed VCs</td>
         <td class="td-us">First Round, Lerer Hippeau, Precursor</td>
         <td class="td-uk">LocalGlobe, Playfair Capital, Episode 1</td>
+        <td class="td-why">These firms have the LP relationships and portfolio networks that <strong>warm-introduce you to Balderton and Index</strong> at Series A — the UK equivalent of a First Round → Sequoia pipeline. Episode 1 in particular is known for founder-friendly governance terms, making them an Incorruptible-compatible first institutional partner.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://localglobe.vc" target="_blank" rel="noopener">LocalGlobe</a>
           <a class="matrix-link" href="https://www.playfaircapital.com" target="_blank" rel="noopener">Playfair</a>
@@ -560,6 +648,7 @@ footer{
         <td class="td-cat">Series A VCs</td>
         <td class="td-us">Sequoia, a16z, Benchmark</td>
         <td class="td-uk">Balderton Capital, Index Ventures, Octopus Ventures, Notion Capital</td>
+        <td class="td-why">Index and Balderton are the <strong>highest-signal Series A names</strong> in the UK — their backing accelerates European expansion and attracts US crossover interest at Series B. Octopus Ventures is notable for accepting board governance structures that Incorruptible would endorse; Notion Capital specialises in B2B SaaS with deep operational support.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://www.balderton.com" target="_blank" rel="noopener">Balderton</a>
           <a class="matrix-link" href="https://www.indexventures.com" target="_blank" rel="noopener">Index</a>
@@ -571,6 +660,7 @@ footer{
         <td class="td-cat">Growth Capital</td>
         <td class="td-us">Tiger Global, Coatue, GrowthEquity</td>
         <td class="td-uk">BGF (British Growth Fund), Molten Ventures, HgCapital</td>
+        <td class="td-why"><strong>BGF is the Incorruptible-compatible growth investor</strong> — patient capital, minority stakes only, no forced exit timelines. This is structurally different from Tiger-style crossover funds that created growth-at-all-costs pressure in UK AI companies post-2020. Hg specialises in software with recurring revenue; Molten Ventures in deep tech. Know the difference before you take the cheque.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://www.bgf.co.uk" target="_blank" rel="noopener">BGF</a>
           <a class="matrix-link" href="https://moltenventures.com" target="_blank" rel="noopener">Molten</a>
@@ -581,6 +671,7 @@ footer{
         <td class="td-cat">Deep Tech / AI VCs</td>
         <td class="td-us">NEA, GV (Google Ventures), DCVC</td>
         <td class="td-uk">Amadeus Capital, IQ Capital, Cambridge Innovation Capital</td>
+        <td class="td-why">IQ Capital and CIC are <strong>Cambridge-anchored</strong> — essential access points to the UK's densest AI research talent cluster. Amadeus has the longest deep tech track record in the UK (30+ years) and the LP relationships that attract Mansion House Accord-aligned co-investors at Series B. These are the right first calls for UK AI companies building proprietary model infrastructure.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://www.amadeuscapital.com" target="_blank" rel="noopener">Amadeus</a>
           <a class="matrix-link" href="https://iqcapital.vc" target="_blank" rel="noopener">IQ Capital</a>
@@ -591,6 +682,7 @@ footer{
         <td class="td-cat">Public Markets</td>
         <td class="td-us">NASDAQ, NYSE</td>
         <td class="td-uk">LSE Main Market, AIM (growth companies)</td>
+        <td class="td-why">AIM offers a <strong>lower-cost listing with lighter-touch regulation</strong> than the Main Market — no minimum market cap, no free float requirement. Many UK tech companies use it as a long-term home rather than a stepping stone. The LSE Main Market is the UK equivalent of NYSE for larger companies. Post-listing governance expectations differ materially from US exchanges; prepare accordingly.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://www.londonstockexchange.com/raise-finance/equity/aim" target="_blank" rel="noopener">LSE AIM</a>
         </td>
@@ -599,6 +691,7 @@ footer{
         <td class="td-cat">Government Funding</td>
         <td class="td-us">SBA Loans, DARPA, NSF grants</td>
         <td class="td-uk">Innovate UK Grants, British Business Bank</td>
+        <td class="td-why">Innovate UK grants are <strong>non-dilutive</strong> — free money for qualifying R&D, no equity given up. The BBB provides loan guarantees (reducing bank lending risk) and operates co-investment funds that match private capital. Both are chronically underused. A UK AI startup spending £500k+ on R&D that isn't claiming Innovate UK and HMRC R&D relief simultaneously is leaving significant capital on the table.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://www.ukri.org/councils/innovate-uk/" target="_blank" rel="noopener">Innovate UK</a>
           <a class="matrix-link" href="https://www.british-business-bank.co.uk" target="_blank" rel="noopener">BBB</a>
@@ -608,6 +701,7 @@ footer{
         <td class="td-cat">Institutional Capital</td>
         <td class="td-us">US Pension / Endowment via LP structures</td>
         <td class="td-uk">Mansion House Accord signatories (L&amp;G, Aviva, Nest, Scottish Widows)</td>
+        <td class="td-why">The Accord commits £800bn+ in DC pension assets to private markets — <strong>new capital that simply didn't exist for UK startups before 2025</strong>. Accord LPs will require governance infrastructure that they can diligence quickly: board composition, audit, reporting. Companies built on Incorruptible's framework will qualify; companies that retrofitted governance under pressure will not. The window to be in the first cohort is now.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://www.gov.uk/government/publications/mansion-house-accord" target="_blank" rel="noopener">Accord</a>
           <a class="matrix-link" href="https://www.british-business-bank.co.uk/programmes/british-growth-partnership" target="_blank" rel="noopener">BGP</a>
@@ -617,6 +711,7 @@ footer{
         <td class="td-cat">AI Safety / Ethics</td>
         <td class="td-us">NIST AI Risk Management Framework</td>
         <td class="td-uk">UK AI Safety Institute — voluntary reporting framework</td>
+        <td class="td-why">AISI registration is <strong>two hours of admin that signals institutional-grade governance</strong> to Accord-aligned investors. It is currently voluntary — which means early registrants stand out. As Mansion House Accord fund vehicles mature, AISI registration is expected to become a soft prerequisite for AI companies seeking allocation. Get ahead of it.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://www.gov.uk/government/organisations/ai-safety-institute" target="_blank" rel="noopener">AISI</a>
         </td>
@@ -625,6 +720,7 @@ footer{
         <td class="td-cat">Corp. Governance Code</td>
         <td class="td-us">Sarbanes-Oxley (public), NVCA model docs (private)</td>
         <td class="td-uk">UK Corporate Governance Code (FRC, 2024 revision)</td>
+        <td class="td-why">The FRC Code sets <strong>board composition, audit, and accountability benchmarks</strong> that UK institutional investors — including Mansion House Accord signatories — use as due diligence criteria. The 2024 revision extends expectations to private companies backed by institutional capital. Founders who read it before Series B avoid expensive governance retrofits under investor pressure. Reading it is free; ignoring it isn't.</td>
         <td class="td-link">
           <a class="matrix-link" href="https://www.frc.org.uk/library/standards-codes-policy/corporate-governance/uk-corporate-governance-code/" target="_blank" rel="noopener">FRC Code</a>
         </td>
@@ -850,43 +946,6 @@ footer{
     </div>
   </div>
 
-  <!-- ── 7. JONATHAN BRIEFING ── -->
-  <div class="finding" id="s7">
-    <div class="finding-header">
-      <span class="finding-num">07</span>
-      <h2 class="finding-title">Executive Briefing: leanstartup.co</h2>
-    </div>
-    <div class="cards">
-      <div class="card full" style="background:var(--surface2);border-color:#334155">
-        <div class="card-label" style="color:var(--text-secondary)">🎯 Five-Point Summary for Jonathan</div>
-        <div class="card-body">
-          <p style="color:var(--text);font-size:0.95rem;margin-bottom:1.25rem;">The case for positioning leanstartup.co as the UK's Incorruptible implementation partner — now, before the window closes.</p>
-          <div style="display:flex;flex-direction:column;gap:1rem">
-            <div style="display:flex;gap:0.75rem">
-              <span style="color:var(--accent);font-weight:800;font-size:0.85rem;flex-shrink:0;padding-top:0.1rem">01</span>
-              <div><strong style="color:var(--text)">The structural advantage is real.</strong> <span style="color:var(--text-secondary)">UK Ltd + EMI + SEIS/EIS creates the most tax-efficient, founder-aligned startup structure in the G7. Incorruptible's framework maps onto this cleanly — UK founders who build with integrity architecture from day one are not just ethically sound, they are structurally advantaged over peers who retrofit governance under investor pressure.</span></div>
-            </div>
-            <div style="display:flex;gap:0.75rem">
-              <span style="color:var(--accent);font-weight:800;font-size:0.85rem;flex-shrink:0;padding-top:0.1rem">02</span>
-              <div><strong style="color:var(--text)">The Mansion House Accord is the biggest capital story of the decade.</strong> <span style="color:var(--text-secondary)">£50bn+ of institutional capital entering UK growth companies requires recipients to have governance infrastructure that Accord LPs can diligence. Incorruptible is the operating framework for companies that want to be Accord-ready. No other methodology is currently positioned here — this is a first-mover opportunity for leanstartup.co.</span></div>
-            </div>
-            <div style="display:flex;gap:0.75rem">
-              <span style="color:var(--accent);font-weight:800;font-size:0.85rem;flex-shrink:0;padding-top:0.1rem">03</span>
-              <div><strong style="color:var(--text)">The scale-up gap is where Incorruptible earns its fees.</strong> <span style="color:var(--text-secondary)">UK AI startups hit the integrity inflection point at the exact moment they are most capital-constrained (Series B). This is not a problem methodology can solve retrospectively — it requires proactive implementation. The consulting engagement model that sells Incorruptible as pre-Series B infrastructure, not post-crisis remediation, is the right positioning.</span></div>
-            </div>
-            <div style="display:flex;gap:0.75rem">
-              <span style="color:var(--accent);font-weight:800;font-size:0.85rem;flex-shrink:0;padding-top:0.1rem">04</span>
-              <div><strong style="color:var(--text)">UK governance culture is receptive.</strong> <span style="color:var(--text-secondary)">UK founders are more accustomed to NEDs, board oversight, and structured accountability than their US counterparts. Incorruptible's framework does not land as foreign imposition — it lands as a formalisation of what good UK company culture already expects. The resistance is lower; the uptake can be faster.</span></div>
-            </div>
-            <div style="display:flex;gap:0.75rem">
-              <span style="color:var(--accent);font-weight:800;font-size:0.85rem;flex-shrink:0;padding-top:0.1rem">05</span>
-              <div><strong style="color:var(--text)">The window is 18 months.</strong> <span style="color:var(--text-secondary)">The Mansion House Accord is being implemented now. The fund vehicles and co-investment frameworks that will channel Accord capital into UK growth companies are being designed in 2025–2026. leanstartup.co should be at the table shaping the governance expectations those vehicles embed — not responding to them after they are fixed. The time to move is now.</span></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
 </div><!-- /findings -->
 
