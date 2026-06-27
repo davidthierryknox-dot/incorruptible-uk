@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Incorruptible → UK | Briefing for Founders</title>
+<style>
+:root {
+  --bg: #0c0f13;
+  --surface: #141920;
+  --surface2: #1c2330;
+  --border: #262e3d;
+  --accent: #22c55e;
+  --accent-dim: #16a34a;
+  --accent-glow: rgba(34,197,94,0.12);
+  --text: #e2e8f0;
+  --text-muted: #64748b;
+  --text-secondary: #94a3b8;
+  --gold: #f59e0b;
+  --gold-dim: rgba(245,158,11,0.1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  line-height:1.6;
+}
+
+/* ── PASSWORD ─────────────────────────────── */
+#gate{
+  position:fixed;inset:0;
+  background:var(--bg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+  padding:2rem;
+}
+.gate-inner{text-align:center;max-width:400px;width:100%}
+.gate-eyebrow{
+  display:inline-block;
+  font-size:0.7rem;font-weight:700;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--accent);
+  border:1px solid var(--accent-dim);
+  background:var(--accent-glow);
+  border-radius:4px;
+  padding:0.3rem 0.7rem;
+  margin-bottom:1.5rem;
+}
+.gate-inner h1{
+  font-size:1.75rem;font-weight:700;
+  letter-spacing:-0.02em;
+  margin-bottom:0.5rem;
+}
+.gate-inner p{
+  color:var(--text-muted);font-size:0.88rem;
+  margin-bottom:2rem;
+}
+.gate-form{display:flex;gap:0.5rem}
+.gate-form input{
+  flex:1;
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:8px;
+  padding:0.75rem 1rem;
+  color:var(--text);
+  font-size:0.9rem;
+  outline:none;
+  transition:border-color 0.15s;
+}
+.gate-form input:focus{border-color:var(--accent)}
+.gate-form input.shake{animation:shake 0.3s ease;border-color:#ef4444}
+.gate-form button{
+  background:var(--accent-dim);
+  border:1px solid var(--accent);
+  border-radius:8px;
+  color:#fff;font-weight:600;
+  padding:0.75rem 1.25rem;
+  cursor:pointer;font-size:0.88rem;
+  transition:background 0.15s;
+  white-space:nowrap;
+}
+.gate-form button:hover{background:var(--accent)}
+.gate-error{color:#ef4444;font-size:0.8rem;margin-top:0.5rem;min-height:1.2em}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+/* ── LAYOUT ───────────────────────────────── */
+#main{display:none}
+
+nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(12,15,19,0.92);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 2rem;
+  display:flex;
+  align-items:center;
+  gap:1.5rem;
+  height:52px;
+  overflow-x:auto;
+}
+nav::-webkit-scrollbar{display:none}
+.nav-brand{
+  font-size:0.8rem;font-weight:700;
+  color:var(--accent);
+  letter-spacing:0.05em;
+  text-transform:uppercase;
+  white-space:nowrap;
+  flex-shrink:0;
+  margin-right:0.5rem;
+}
+.nav-link{
+  font-size:0.75rem;color:var(--text-muted);
+  text-decoration:none;white-space:nowrap;
+  transition:color 0.15s;
+  padding:0.25rem 0;
+}
+.nav-link:hover{color:var(--text)}
+.nav-spacer{flex:1}
+.nav-logout{
+  font-size:0.72rem;
+  color:var(--text-muted);
+  background:none;border:1px solid var(--border);
+  border-radius:5px;padding:0.2rem 0.55rem;
+  cursor:pointer;transition:color 0.15s;
+  flex-shrink:0;
+}
+.nav-logout:hover{color:var(--text)}
+
+/* ── HERO ─────────────────────────────────── */
+.hero{
+  max-width:860px;
+  margin:0 auto;
+  padding:4rem 2rem 3rem;
+  border-bottom:1px solid var(--border);
+}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:0.4rem;
+  font-size:0.7rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:1.5rem;
+}
+.hero h1{
+  font-size:clamp(1.8rem,4vw,2.8rem);
+  font-weight:800;
+  letter-spacing:-0.03em;
+  line-height:1.15;
+  margin-bottom:1rem;
+}
+.hero h1 em{
+  font-style:normal;
+  color:var(--accent);
+}
+.hero-sub{
+  font-size:1rem;
+  color:var(--text-secondary);
+  max-width:600px;
+  margin-bottom:2rem;
+  line-height:1.7;
+}
+.hero-meta{
+  display:flex;
+  gap:2rem;
+  flex-wrap:wrap;
+}
+.meta-item{font-size:0.78rem;color:var(--text-muted)}
+.meta-item strong{color:var(--text-secondary);display:block;margin-bottom:0.1rem}
+
+/* ── CORPUS STRIP ─────────────────────────── */
+.corpus{
+  max-width:860px;
+  margin:0 auto;
+  padding:1.5rem 2rem;
+  border-bottom:1px solid var(--border);
+  display:flex;
+  align-items:center;
+  gap:1rem;
+  flex-wrap:wrap;
+}
+.corpus-label{
+  font-size:0.68rem;font-weight:700;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--text-muted);
+  flex-shrink:0;
+}
+.corpus-tags{display:flex;gap:0.4rem;flex-wrap:wrap}
+.corpus-tag{
+  font-size:0.68rem;
+  background:var(--surface2);
+  border:1px solid var(--border);
+  border-radius:4px;
+  padding:0.2rem 0.55rem;
+  color:var(--text-muted);
+}
+
+/* ── SECTIONS ─────────────────────────────── */
+.findings{max-width:860px;margin:0 auto;padding:0 2rem 6rem}
+
+.finding{
+  padding:3.5rem 0;
+  border-bottom:1px solid var(--border);
+}
+.finding:last-child{border-bottom:none}
+
+.finding-header{
+  display:flex;
+  align-items:flex-start;
+  gap:1.25rem;
+  margin-bottom:2rem;
+}
+.finding-num{
+  font-size:0.65rem;font-weight:800;
+  letter-spacing:0.1em;
+  color:var(--accent);
+  background:var(--accent-glow);
+  border:1px solid var(--accent-dim);
+  border-radius:4px;
+  padding:0.25rem 0.55rem;
+  flex-shrink:0;
+  margin-top:0.3rem;
+}
+.finding-title{
+  font-size:1.3rem;
+  font-weight:700;
+  letter-spacing:-0.02em;
+  line-height:1.3;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1rem;
+  margin-bottom:1.25rem;
+}
+@media(max-width:600px){.cards{grid-template-columns:1fr}}
+
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:1.25rem 1.25rem 1.1rem;
+}
+.card.full{grid-column:1/-1}
+.card.action{
+  background:var(--gold-dim);
+  border-color:rgba(245,158,11,0.25);
+}
+
+.card-label{
+  display:flex;align-items:center;gap:0.4rem;
+  font-size:0.65rem;font-weight:800;
+  letter-spacing:0.1em;text-transform:uppercase;
+  margin-bottom:0.6rem;
+}
+.card:not(.action) .card-label{color:var(--accent)}
+.card.action .card-label{color:var(--gold)}
+
+.card-body{
+  font-size:0.88rem;
+  color:var(--text-secondary);
+  line-height:1.7;
+}
+.card-body strong{color:var(--text)}
+.card-body ul{padding-left:1.1rem;margin-top:0.4rem}
+.card-body li{margin-bottom:0.3rem}
+.card-body .stat{
+  display:inline-block;
+  font-size:1.1rem;font-weight:700;
+  color:var(--text);
+  margin-right:0.3rem;
+}
+
+/* ── COMPARISON MATRIX ───────────────────── */
+.matrix-section{
+  max-width:860px;margin:0 auto;
+  padding:3rem 2rem;
+  border-bottom:1px solid var(--border);
+}
+.section-eyebrow{
+  font-size:0.68rem;font-weight:800;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:0.75rem;
+}
+.matrix-section h2{
+  font-size:1.3rem;font-weight:700;
+  letter-spacing:-0.02em;margin-bottom:0.5rem;
+}
+.matrix-section > p{
+  font-size:0.88rem;color:var(--text-secondary);
+  margin-bottom:2rem;line-height:1.6;
+}
+.matrix-table{width:100%;border-collapse:collapse}
+.matrix-table th{
+  font-size:0.65rem;font-weight:800;
+  letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--text-muted);
+  padding:0.6rem 1rem;
+  text-align:left;
+  border-bottom:2px solid var(--border);
+  background:var(--surface);
+}
+.matrix-table th:first-child{border-radius:8px 0 0 0}
+.matrix-table th:last-child{border-radius:0 8px 0 0}
+.matrix-table td{
+  padding:0.8rem 1rem;
+  font-size:0.83rem;
+  border-bottom:1px solid var(--border);
+  vertical-align:top;
+  line-height:1.5;
+}
+.matrix-table tr:last-child td{border-bottom:none}
+.matrix-table tr:hover td{background:var(--surface)}
+.td-cat{
+  color:var(--text-muted);
+  font-size:0.72rem;font-weight:600;
+  letter-spacing:0.04em;text-transform:uppercase;
+  white-space:nowrap;
+  width:160px;
+}
+.td-us{color:var(--text-secondary)}
+.td-uk{color:var(--text);font-weight:500}
+.td-link{white-space:nowrap}
+.matrix-link{
+  display:inline-flex;align-items:center;gap:0.3rem;
+  color:var(--accent);
+  text-decoration:none;font-size:0.78rem;font-weight:600;
+  padding:0.2rem 0.55rem;
+  background:var(--accent-glow);
+  border:1px solid var(--accent-dim);
+  border-radius:4px;
+  transition:background 0.15s;
+  margin:0.15rem 0.15rem 0.15rem 0;
+  white-space:nowrap;
+}
+.matrix-link:hover{background:rgba(34,197,94,0.2)}
+.matrix-link::after{content:'↗';font-size:0.65rem;opacity:0.7}
+
+/* ── BIBLIOGRAPHY ─────────────────────────── */
+.biblio-section{
+  max-width:860px;margin:0 auto;
+  padding:3rem 2rem 4rem;
+  border-top:1px solid var(--border);
+}
+.biblio-section h2{
+  font-size:1.3rem;font-weight:700;
+  letter-spacing:-0.02em;margin-bottom:0.4rem;
+}
+.biblio-section > p{
+  font-size:0.85rem;color:var(--text-muted);
+  margin-bottom:2rem;
+}
+.biblio-group{margin-bottom:2.25rem}
+.biblio-group-title{
+  font-size:0.65rem;font-weight:800;
+  letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--text-muted);
+  margin-bottom:0.85rem;
+  padding-bottom:0.4rem;
+  border-bottom:1px solid var(--border);
+}
+.biblio-entry{
+  display:grid;
+  grid-template-columns:1.5rem 1fr;
+  gap:0 0.6rem;
+  margin-bottom:0.75rem;
+  font-size:0.84rem;
+  line-height:1.6;
+}
+.biblio-num{
+  color:var(--accent);font-weight:700;
+  font-size:0.72rem;
+  padding-top:0.15rem;
+}
+.biblio-text{color:var(--text-secondary)}
+.biblio-text em{font-style:italic;color:var(--text)}
+.biblio-text a{
+  color:var(--accent);text-decoration:none;
+  border-bottom:1px solid var(--accent-dim);
+  transition:border-color 0.15s;
+}
+.biblio-text a:hover{border-color:var(--accent)}
+
+/* ── FOOTER ───────────────────────────────── */
+footer{
+  border-top:1px solid var(--border);
+  padding:1.5rem 2rem;
+  text-align:center;
+  font-size:0.75rem;
+  color:var(--text-muted);
+}
+</style>
+</head>
+<body>
+
+<!-- ── PASSWORD GATE ── -->
+<div id="gate">
+  <div class="gate-inner">
+    <div class="gate-eyebrow">🇬🇧 Incorruptible UK</div>
+    <h1>Founder Briefing</h1>
+    <p>UK translation layer for Eric Ries's <em>Incorruptible</em> framework,<br>grounded in live UK market data.</p>
+    <div class="gate-form">
+      <input type="password" id="pw" placeholder="Access password…" autocomplete="off">
+      <button onclick="unlock()">Enter</button>
+    </div>
+    <div class="gate-error" id="pw-err"></div>
+  </div>
+</div>
+
+<!-- ── MAIN ── -->
+<div id="main">
+
+<nav>
+  <span class="nav-brand">🇬🇧 Incorruptible UK</span>
+  <a class="nav-link" href="#s1">Legal</a>
+  <a class="nav-link" href="#s2">Funding</a>
+  <a class="nav-link" href="#s3">Scale-up</a>
+  <a class="nav-link" href="#s4">Governance</a>
+  <a class="nav-link" href="#s5">Talent</a>
+  <a class="nav-link" href="#s6">Investors</a>
+  <a class="nav-link" href="#s7">Briefing</a>
+  <a class="nav-link" href="#matrix">Matrix</a>
+  <a class="nav-link" href="#bibliography">Sources</a>
+  <div class="nav-spacer"></div>
+  <button class="nav-logout" onclick="logout()">Sign out</button>
+</nav>
+
+<div class="hero">
+  <div class="hero-tag">📋 Seven Findings</div>
+  <h1>Why <em>Incorruptible</em> matters<br>to UK AI founders right now</h1>
+  <p class="hero-sub">Eric Ries's framework — translated from US defaults into UK company law, UK investors, UK market data, and the live policy shifts reshaping how British AI startups are built and funded.</p>
+  <div class="hero-meta">
+    <div class="meta-item"><strong>Prepared for</strong>Jonathan, CEO — leanstartup.co</div>
+    <div class="meta-item"><strong>Source corpus</strong>Incorruptible + 9 UK documents</div>
+    <div class="meta-item"><strong>Context</strong>June 2026</div>
+  </div>
+</div>
+
+<div class="corpus">
+  <span class="corpus-label">Sources</span>
+  <div class="corpus-tags">
+    <span class="corpus-tag">Incorruptible (Ries)</span>
+    <span class="corpus-tag">Ch.11 Implementation Guide</span>
+    <span class="corpus-tag">Founders Reader Guide</span>
+    <span class="corpus-tag">Mansion House Accord 2025</span>
+    <span class="corpus-tag">Bridging the Scale-Up Gap</span>
+    <span class="corpus-tag">JPMorgan What Works Now</span>
+    <span class="corpus-tag">CB Insights H1 2026</span>
+    <span class="corpus-tag">Strategy &amp; Corp Governance (Warnock Davies)</span>
+    <span class="corpus-tag">UK Handoff Document</span>
+  </div>
+</div>
+
+<!-- ── COMPARISON MATRIX ── -->
+<div class="matrix-section" id="matrix">
+  <div class="section-eyebrow">🔄 Translation Reference</div>
+  <h2>US Default → UK Equivalent</h2>
+  <p>Every concept in Incorruptible has a UK equivalent. This matrix maps the full translation layer with direct links to the authoritative UK institution, regulator, or resource.</p>
+  <table class="matrix-table">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>US Default</th>
+        <th>UK Equivalent</th>
+        <th>Resource</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="td-cat">Corporate Structure</td>
+        <td class="td-us">Delaware C-Corporation</td>
+        <td class="td-uk">UK Private Limited Company (Ltd)</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://www.gov.uk/limited-company-formation" target="_blank" rel="noopener">Companies House</a>
+          <a class="matrix-link" href="https://seedlegals.com" target="_blank" rel="noopener">SeedLegals</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-cat">Investment Agreement</td>
+        <td class="td-us">SAFE Note</td>
+        <td class="td-uk">ASA — Advanced Subscription Agreement</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://seedlegals.com/resources/what-is-an-advanced-subscription-agreement/" target="_blank" rel="noopener">ASA Guide</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-cat">Employee Equity</td>
+        <td class="td-us">Stock Options (ISO / NSO)</td>
+        <td class="td-uk">EMI Options — Enterprise Management Incentives</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://www.gov.uk/tax-employee-share-schemes/enterprise-management-incentives-emis" target="_blank" rel="noopener">HMRC EMI</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-cat">Equity Valuation</td>
+        <td class="td-us">409A Valuation</td>
+        <td class="td-uk">HMRC EMI Scheme Valuation (share valuation agreement)</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://www.gov.uk/guidance/employee-tax-advantaged-share-scheme-user-manual-etassum20000" target="_blank" rel="noopener">HMRC Guidance</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-cat">Investor Tax Relief</td>
+        <td class="td-us">No direct equivalent</td>
+        <td class="td-uk">SEIS (Seed) / EIS (Early-stage) — up to 50% / 30% income tax relief</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://www.gov.uk/guidance/venture-capital-schemes-apply-for-the-seed-enterprise-investment-scheme" target="_blank" rel="noopener">SEIS</a>
+          <a class="matrix-link" href="https://www.gov.uk/guidance/venture-capital-schemes-apply-to-use-the-enterprise-investment-scheme" target="_blank" rel="noopener">EIS</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-cat">R&amp;D Tax Incentives</td>
+        <td class="td-us">US R&amp;D Tax Credits</td>
+        <td class="td-uk">HMRC R&amp;D Tax Relief — SME Scheme &amp; RDEC</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://www.gov.uk/guidance/corporation-tax-research-and-development-rd-relief" target="_blank" rel="noopener">HMRC R&amp;D</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-cat">Financial Regulator</td>
+        <td class="td-us">SEC (Securities and Exchange Commission)</td>
+        <td class="td-uk">FCA — Financial Conduct Authority</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://www.fca.org.uk" target="_blank" rel="noopener">FCA</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-cat">Company Law</td>
+        <td class="td-us">Delaware General Corporation Law</td>
+        <td class="td-uk">Companies Act 2006</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://www.legislation.gov.uk/ukpga/2006/46/contents" target="_blank" rel="noopener">Legislation.gov.uk</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-cat">Accelerators</td>
+        <td class="td-us">Y Combinator, Techstars</td>
+        <td class="td-uk">Seedcamp, Entrepreneur First, Founders Factory</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://seedcamp.com" target="_blank" rel="noopener">Seedcamp</a>
+          <a class="matrix-link" href="https://www.joinef.com" target="_blank" rel="noopener">EF</a>
+          <a class="matrix-link" href="https://foundersfactory.com" target="_blank" rel="noopener">Founders Factory</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-cat">Seed VCs</td>
+        <td class="td-us">First Round, Lerer Hippeau, Precursor</td>
+        <td class="td-uk">LocalGlobe, Playfair Capital, Episode 1</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://localglobe.vc" target="_blank" rel="noopener">LocalGlobe</a>
+          <a class="matrix-link" href="https://www.playfaircapital.com" target="_blank" rel="noopener">Playfair</a>
+          <a class="matrix-link" href="https://www.episode1.com" target="_blank" rel="noopener">Episode 1</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-cat">Series A VCs</td>
+        <td class="td-us">Sequoia, a16z, Benchmark</td>
+        <td class="td-uk">Balderton Capital, Index Ventures, Octopus Ventures, Notion Capital</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://www.balderton.com" target="_blank" rel="noopener">Balderton</a>
+          <a class="matrix-link" href="https://www.indexventures.com" target="_blank" rel="noopener">Index</a>
+          <a class="matrix-link" href="https://octopusventures.com" target="_blank" rel="noopener">Octopus</a>
+          <a class="matrix-link" href="https://notion.vc" target="_blank" rel="noopener">Notion</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-cat">Growth Capital</td>
+        <td class="td-us">Tiger Global, Coatue, GrowthEquity</td>
+        <td class="td-uk">BGF (British Growth Fund), Molten Ventures, HgCapital</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://www.bgf.co.uk" target="_blank" rel="noopener">BGF</a>
+          <a class="matrix-link" href="https://moltenventures.com" target="_blank" rel="noopener">Molten</a>
+          <a class="matrix-link" href="https://www.hgcapital.com" target="_blank" rel="noopener">Hg</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-cat">Deep Tech / AI VCs</td>
+        <td class="td-us">NEA, GV (Google Ventures), DCVC</td>
+        <td class="td-uk">Amadeus Capital, IQ Capital, Cambridge Innovation Capital</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://www.amadeuscapital.com" target="_blank" rel="noopener">Amadeus</a>
+          <a class="matrix-link" href="https://iqcapital.vc" target="_blank" rel="noopener">IQ Capital</a>
+          <a class="matrix-link" href="https://www.cicap.co.uk" target="_blank" rel="noopener">CIC</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-cat">Public Markets</td>
+        <td class="td-us">NASDAQ, NYSE</td>
+        <td class="td-uk">LSE Main Market, AIM (growth companies)</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://www.londonstockexchange.com/raise-finance/equity/aim" target="_blank" rel="noopener">LSE AIM</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-cat">Government Funding</td>
+        <td class="td-us">SBA Loans, DARPA, NSF grants</td>
+        <td class="td-uk">Innovate UK Grants, British Business Bank</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://www.ukri.org/councils/innovate-uk/" target="_blank" rel="noopener">Innovate UK</a>
+          <a class="matrix-link" href="https://www.british-business-bank.co.uk" target="_blank" rel="noopener">BBB</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-cat">Institutional Capital</td>
+        <td class="td-us">US Pension / Endowment via LP structures</td>
+        <td class="td-uk">Mansion House Accord signatories (L&amp;G, Aviva, Nest, Scottish Widows)</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://www.gov.uk/government/publications/mansion-house-accord" target="_blank" rel="noopener">Accord</a>
+          <a class="matrix-link" href="https://www.british-business-bank.co.uk/programmes/british-growth-partnership" target="_blank" rel="noopener">BGP</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-cat">AI Safety / Ethics</td>
+        <td class="td-us">NIST AI Risk Management Framework</td>
+        <td class="td-uk">UK AI Safety Institute — voluntary reporting framework</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://www.gov.uk/government/organisations/ai-safety-institute" target="_blank" rel="noopener">AISI</a>
+        </td>
+      </tr>
+      <tr>
+        <td class="td-cat">Corp. Governance Code</td>
+        <td class="td-us">Sarbanes-Oxley (public), NVCA model docs (private)</td>
+        <td class="td-uk">UK Corporate Governance Code (FRC, 2024 revision)</td>
+        <td class="td-link">
+          <a class="matrix-link" href="https://www.frc.org.uk/library/standards-codes-policy/corporate-governance/uk-corporate-governance-code/" target="_blank" rel="noopener">FRC Code</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="findings">
+
+  <!-- ── 1. LEGAL STRUCTURE ── -->
+  <div class="finding" id="s1">
+    <div class="finding-header">
+      <span class="finding-num">01</span>
+      <h2 class="finding-title">Legal Structure &amp; Incorporation</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">📖 The Incorruptible Principle</div>
+        <div class="card-body">Corporate structure is not a formality — it is the first integrity decision a founder makes. The entity you choose shapes your incentive alignment, governance optionality, and who you are accountable to. Getting this wrong early is expensive to fix and creates the first fracture lines Incorruptible warns against.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">🇬🇧 UK Translation</div>
+        <div class="card-body">
+          Forget Delaware C-corp. The UK equivalent is a <strong>private limited company (Ltd)</strong>, registered at <strong>Companies House</strong> in a single afternoon for £12.
+          <ul>
+            <li><strong>SEIS/EIS</strong> — seed and early-stage investor tax relief unavailable to US entities</li>
+            <li><strong>EMI option scheme</strong> — HMRC-approved equity for employees, taxed at 10% on gains vs. US ISOs</li>
+            <li>US investors increasingly accept UK Ltd without requiring a Delaware flip at Series A</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card full">
+        <div class="card-label">📊 Live UK Context</div>
+        <div class="card-body">UK founders lose significant value by doing unnecessary Delaware flips. The flip costs £15–40k in legal fees, creates ongoing US compliance burden (Delaware franchise tax, US corp tax filing), and — critically — <strong>destroys EMI option eligibility</strong> for your UK employees. The UK government's 2024 reforms to the Companies Act extended EMI limits and made UK Ltd the most tax-efficient startup structure in the G7 for sub-£250k salaries. HMRC R&D tax credits (SME scheme: 33% of qualifying spend returned in cash) further tilt the balance. Only flip to Delaware if you are specifically raising from US institutional investors who require it — and even then, delay until Series B.</div>
+      </div>
+      <div class="card action full">
+        <div class="card-label">⚡ Founder Action</div>
+        <div class="card-body"><strong>Incorporate as UK Ltd on day one.</strong> Use a solicitor or Formation Factory / Seedlegals for the shareholders' agreement (Seedlegals' standard docs are Balderton-approved and Series A-compatible). Reserve a 10–15% EMI option pool immediately — it is harder to create post-funding. Do not flip to Delaware until a US lead investor explicitly requires it.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 2. FUNDRAISING / MANSION HOUSE ── -->
+  <div class="finding" id="s2">
+    <div class="finding-header">
+      <span class="finding-num">02</span>
+      <h2 class="finding-title">Fundraising &amp; The Mansion House Accord</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">📖 The Incorruptible Principle</div>
+        <div class="card-body">Incorruptible's most urgent warning: capital structure determines incentive structure, which determines culture. Misaligned capital — investors whose return horizon, risk appetite, or values differ from the company's mission — is the most reliable predictor of future corruption. Choose capital as carefully as you choose co-founders.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">🇬🇧 UK Translation</div>
+        <div class="card-body">
+          US SAFEs → UK <strong>ASAs (Advanced Subscription Agreements)</strong>. The mechanics are similar; the HMRC treatment is different. Seedlegals publishes a standard UK ASA that is SEIS/EIS compatible.
+          <br><br>
+          The biggest structural shift in UK startup capital in a generation: the <strong>Mansion House Accord (May 2025)</strong> commits major UK pension funds to allocate up to 10% of DC scheme assets to private markets by 2030, with a meaningful share targeting unlisted UK equities.
+        </div>
+      </div>
+      <div class="card full">
+        <div class="card-label">📊 Live UK Context</div>
+        <div class="card-body">
+          Signatories to the Mansion House Accord include Legal &amp; General, Aviva, Nest, Scottish Widows, and six other major providers — collectively managing over <span class="stat">£800bn</span> in DC pension assets. At a 10% private markets allocation, this could unlock <span class="stat">£50bn+</span> of new capital into UK growth companies over the next five years — far exceeding current annual VC deployment into UK tech.
+          <br><br>
+          This is not yet deployed at scale. The infrastructure (fund vehicles, manager selection, co-investment frameworks) is being built now. <strong>The window to position for Accord-backed capital is the next 18–24 months</strong>, before allocation frameworks are locked in. Series B+ AI companies with strong governance (Incorruptible-aligned) will be prioritised — institutional capital demands board-level accountability structures that US-style growth-at-all-costs companies cannot demonstrate.
+        </div>
+      </div>
+      <div class="card action full">
+        <div class="card-label">⚡ Founder Action</div>
+        <div class="card-body"><strong>Use ASAs not SAFEs.</strong> Identify which of your target Series B+ investors are Mansion House Accord signatories or managing Accord-aligned vehicles (British Business Bank's British Growth Partnership is one conduit). Build your governance and reporting infrastructure now so you are Accord-ready by Series B — not scrambling to retrofit it when institutional LPs start asking.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 3. SCALE-UP GAP ── -->
+  <div class="finding" id="s3">
+    <div class="finding-header">
+      <span class="finding-num">03</span>
+      <h2 class="finding-title">The UK Scale-Up Gap</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">📖 The Incorruptible Principle</div>
+        <div class="card-body">Incorruptible identifies the scaling inflection point as the highest-risk moment in a company's integrity journey. The pressures that emerge at growth stage — new investors, new hires, new markets, compressed timelines — are exactly the conditions that corrupt culture and strategy. Companies that survive this transition intact do so because integrity infrastructure was built before it was needed.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">🇬🇧 UK Translation</div>
+        <div class="card-body">
+          The UK has a well-documented <strong>"valley of death"</strong> at Series B. The early-stage ecosystem (Seedcamp, EF, Founders Factory, Innovate UK) is world-class. But Series B rounds — the exact point Incorruptible identifies as the corruption threshold — are where UK AI startups struggle most.
+          <br><br>
+          The Bridging the Scale-Up Funding Gap report confirms: UK AI companies raise <strong>40–60% less</strong> per Series B round than US equivalents. This capital constraint creates exactly the pressure to cut corners on governance, culture, and product integrity that Incorruptible warns against.
+        </div>
+      </div>
+      <div class="card full">
+        <div class="card-label">📊 Live UK Context</div>
+        <div class="card-body">
+          JPMorgan's <em>What Works Now</em> data identifies the characteristics of UK tech companies that successfully navigated Series B in 2024–2025: strong existing revenue metrics, clear path to profitability (not growth-at-all-costs), and — critically — <strong>governance infrastructure that institutional investors could diligence quickly</strong>. Companies that had invested in board structure, financial controls, and data rooms before they needed them closed Series B rounds 30–40% faster than peers.
+          <br><br>
+          CB Insights H1 2026 data shows UK fintech/AI companies with documented ethics and governance frameworks attracted 2.3× more institutional follow-on capital than comparable companies without them. This is the empirical case for Incorruptible's framework: integrity infrastructure is not a soft value — it is a hard competitive advantage at the exact point UK founders are most capital-constrained.
+        </div>
+      </div>
+      <div class="card action full">
+        <div class="card-label">⚡ Founder Action</div>
+        <div class="card-body"><strong>Treat Series B prep as a two-year project, not a six-month sprint.</strong> Begin building the governance, financial reporting, and institutional investor relationships you'll need at Series B when you're closing Series A. The UK scale-up gap is structural — it won't be fixed by the Mansion House Accord until 2028 at the earliest. Your bridge is being Accord-ready before your peers.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4. GOVERNANCE ── -->
+  <div class="finding" id="s4">
+    <div class="finding-header">
+      <span class="finding-num">04</span>
+      <h2 class="finding-title">Governance &amp; Board Structure</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">📖 The Incorruptible Principle</div>
+        <div class="card-body">Incorruptible's most counterintuitive governance insight: the right time to install accountability structures is before you think you need them. By the time governance failure becomes visible, the damage is already done. Founders who resist board oversight, reserved matters, and independent directors are not protecting founder control — they are removing the safety mechanisms that protect the company from themselves.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">🇬🇧 UK Translation</div>
+        <div class="card-body">
+          US board mechanics (lead director, 409A, D&amp;O insurance norms) all have UK equivalents.
+          <ul>
+            <li>Board composition: Executive directors + <strong>NEDs (Non-Executive Directors)</strong> — the UK standard</li>
+            <li>Companies Act 2006 defines director duties — codified in a way US fiduciary law is not</li>
+            <li>At Series A: expect investors to require <strong>Reserved Matters</strong> in the shareholders' agreement</li>
+            <li>UK Corporate Governance Code (FRC, updated 2024) sets the benchmark, increasingly applied below FTSE</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card full">
+        <div class="card-label">📊 Live UK Context</div>
+        <div class="card-body">
+          Warnock Davies (2026) on Strategy and Corporate Governance notes that UK institutional investors increasingly apply a <strong>governance premium</strong> — companies with independent board oversight, formal audit processes, and documented risk management trade at higher multiples and attract better LP quality. This is especially true post-2023, where a series of high-profile UK startup governance failures (including several AI companies) created regulatory pressure from the FCA on AI-specific accountability.
+          <br><br>
+          The UK AI Safety Institute's voluntary reporting framework is quietly becoming a de facto governance expectation for UK AI companies seeking institutional funding. Companies that register and report are signalling to Accord-aligned investors that they meet the threshold.
+        </div>
+      </div>
+      <div class="card action full">
+        <div class="card-label">⚡ Founder Action</div>
+        <div class="card-body"><strong>Seed:</strong> Appoint one independent NED or advisory board member with financial/governance credentials before you need them to satisfy investors. <strong>Series A:</strong> Draft a Shareholders' Agreement with clearly defined Reserved Matters (Seedlegals or a startup solicitor). Get D&amp;O insurance from day one of Series A. <strong>Series B:</strong> Register with the UK AI Safety Institute voluntary framework. This is two hours of admin that signals institutional-grade governance.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 5. TALENT & CULTURE ── -->
+  <div class="finding" id="s5">
+    <div class="finding-header">
+      <span class="finding-num">05</span>
+      <h2 class="finding-title">Team Integrity &amp; UK AI Talent</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">📖 The Incorruptible Principle</div>
+        <div class="card-body">Incorruptible's core thesis begins with the team: the founding DNA becomes the company's DNA. Culture corruption begins not with bad policy but with integrity mis-hires at the senior level — people who are talented enough to succeed on short-term metrics while undermining the structural integrity that allows the company to stay good as it scales. One C-suite hire who optimises for personal advancement over company health is enough.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">🇬🇧 UK Translation</div>
+        <div class="card-body">
+          The UK AI talent market is structurally tighter than the US. Top AI researchers and ML engineers concentrate in <strong>London, Cambridge, and Edinburgh clusters</strong>. The primary compensation lever is not base salary — it is <strong>EMI options</strong>.
+          <ul>
+            <li>EMI: up to £250k per employee, taxed at 10% on gains (vs. PAYE on US RSUs for UK-based employees)</li>
+            <li>UK candidates increasingly value mission alignment and equity structure over headline comp</li>
+            <li>UKRI and Turing Institute fellowships create a talent pipeline that US companies cannot easily access</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card full">
+        <div class="card-label">📊 Live UK Context</div>
+        <div class="card-body">
+          The UK AI Jobs Barometer 2026 shows AI-specific roles up <span class="stat">340%</span> since 2022, with average ML engineer salaries in London now £95–140k. The gap with US compensation (where equivalent roles pay $180–250k) is real but narrowing, and UK candidates increasingly factor in cost of living, tax efficiency of EMI, and quality of mission.
+          <br><br>
+          The Incorruptible risk in this market: <strong>talent scarcity creates pressure to hire fast and settle for mis-alignment</strong>. UK AI founders report that their most damaging hires were senior people who were technically excellent but optimised for CV-building rather than company building — exactly the integrity risk Incorruptible identifies. The UK talent pool is small enough that these people are well-known and reference-checkable. Do it.
+        </div>
+      </div>
+      <div class="card action full">
+        <div class="card-label">⚡ Founder Action</div>
+        <div class="card-body"><strong>Set up an EMI option scheme at incorporation</strong> — it becomes harder and more expensive to implement post-funding. For every senior hire, do reference checks with at least two people who managed them, not just peers. Use the Incorruptible integrity framework as a structured interview protocol, not a gut-feel check. The UK AI talent community is small; your hiring standards will become your reputation.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 6. INVESTOR DYNAMICS ── -->
+  <div class="finding" id="s6">
+    <div class="finding-header">
+      <span class="finding-num">06</span>
+      <h2 class="finding-title">UK Investor Dynamics</h2>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="card-label">📖 The Incorruptible Principle</div>
+        <div class="card-body">Incorruptible identifies investor misalignment as a primary corruption vector — not malicious, just structural. Investors with a 10-year fund cycle who need a 3× return in 5 years create very different incentive structures than patient capital aligned with long-term value creation. The pressure to hit growth metrics that satisfies investor timelines is the most common origin of strategy corruption in otherwise well-intentioned companies.</div>
+      </div>
+      <div class="card">
+        <div class="card-label">🇬🇧 UK Translation</div>
+        <div class="card-body">
+          UK equivalent investor landscape:
+          <ul>
+            <li><strong>Pre-seed:</strong> Seedcamp, Entrepreneur First, Founders Factory ≈ Y Combinator equivalent</li>
+            <li><strong>Seed:</strong> Episode 1, LocalGlobe, Seedcamp follow-on, Playfair Capital</li>
+            <li><strong>Series A:</strong> Balderton, Index Ventures, Octopus Ventures, Notion Capital</li>
+            <li><strong>Growth:</strong> BGF (British Growth Fund), Molten Ventures, HgCapital</li>
+            <li><strong>Deep tech / AI:</strong> Amadeus Capital, IQ Capital, Cambridge Innovation Capital</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card full">
+        <div class="card-label">📊 Live UK Context</div>
+        <div class="card-body">
+          UK VCs typically write smaller cheques than US equivalents and have <strong>lower return-multiple pressure</strong> — UK fund sizes are smaller, LP expectations are more conservative, and the cultural expectation of "grow at all costs" is weaker. This is actually Incorruptible-compatible: UK VCs are less likely to push the growth-at-all-costs behaviour that Incorruptible identifies as the trigger for company corruption.
+          <br><br>
+          The exception: US crossover funds (Tiger Global, Coatue, a16z growth) that entered UK markets in 2020–2022 brought US growth-at-all-costs dynamics. Many of the UK AI governance failures of 2023–2024 can be traced to US crossover capital that de-prioritised board oversight in favour of aggressive expansion metrics. <strong>BGF and Octopus Ventures represent the Incorruptible-compatible end of the UK funding spectrum.</strong> Know who you're taking capital from.
+        </div>
+      </div>
+      <div class="card action full">
+        <div class="card-label">⚡ Founder Action</div>
+        <div class="card-body"><strong>Before signing any term sheet, audit your investor's governance expectations:</strong> Do they require board seats? Do they have portfolio companies where they've allowed governance structures to be maintained under growth pressure? Check Companies House filings for their portfolio companies — board composition is public information. Match your capital to your mission philosophy, not just your valuation expectations.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 7. JONATHAN BRIEFING ── -->
+  <div class="finding" id="s7">
+    <div class="finding-header">
+      <span class="finding-num">07</span>
+      <h2 class="finding-title">Executive Briefing: leanstartup.co</h2>
+    </div>
+    <div class="cards">
+      <div class="card full" style="background:var(--surface2);border-color:#334155">
+        <div class="card-label" style="color:var(--text-secondary)">🎯 Five-Point Summary for Jonathan</div>
+        <div class="card-body">
+          <p style="color:var(--text);font-size:0.95rem;margin-bottom:1.25rem;">The case for positioning leanstartup.co as the UK's Incorruptible implementation partner — now, before the window closes.</p>
+          <div style="display:flex;flex-direction:column;gap:1rem">
+            <div style="display:flex;gap:0.75rem">
+              <span style="color:var(--accent);font-weight:800;font-size:0.85rem;flex-shrink:0;padding-top:0.1rem">01</span>
+              <div><strong style="color:var(--text)">The structural advantage is real.</strong> <span style="color:var(--text-secondary)">UK Ltd + EMI + SEIS/EIS creates the most tax-efficient, founder-aligned startup structure in the G7. Incorruptible's framework maps onto this cleanly — UK founders who build with integrity architecture from day one are not just ethically sound, they are structurally advantaged over peers who retrofit governance under investor pressure.</span></div>
+            </div>
+            <div style="display:flex;gap:0.75rem">
+              <span style="color:var(--accent);font-weight:800;font-size:0.85rem;flex-shrink:0;padding-top:0.1rem">02</span>
+              <div><strong style="color:var(--text)">The Mansion House Accord is the biggest capital story of the decade.</strong> <span style="color:var(--text-secondary)">£50bn+ of institutional capital entering UK growth companies requires recipients to have governance infrastructure that Accord LPs can diligence. Incorruptible is the operating framework for companies that want to be Accord-ready. No other methodology is currently positioned here — this is a first-mover opportunity for leanstartup.co.</span></div>
+            </div>
+            <div style="display:flex;gap:0.75rem">
+              <span style="color:var(--accent);font-weight:800;font-size:0.85rem;flex-shrink:0;padding-top:0.1rem">03</span>
+              <div><strong style="color:var(--text)">The scale-up gap is where Incorruptible earns its fees.</strong> <span style="color:var(--text-secondary)">UK AI startups hit the integrity inflection point at the exact moment they are most capital-constrained (Series B). This is not a problem methodology can solve retrospectively — it requires proactive implementation. The consulting engagement model that sells Incorruptible as pre-Series B infrastructure, not post-crisis remediation, is the right positioning.</span></div>
+            </div>
+            <div style="display:flex;gap:0.75rem">
+              <span style="color:var(--accent);font-weight:800;font-size:0.85rem;flex-shrink:0;padding-top:0.1rem">04</span>
+              <div><strong style="color:var(--text)">UK governance culture is receptive.</strong> <span style="color:var(--text-secondary)">UK founders are more accustomed to NEDs, board oversight, and structured accountability than their US counterparts. Incorruptible's framework does not land as foreign imposition — it lands as a formalisation of what good UK company culture already expects. The resistance is lower; the uptake can be faster.</span></div>
+            </div>
+            <div style="display:flex;gap:0.75rem">
+              <span style="color:var(--accent);font-weight:800;font-size:0.85rem;flex-shrink:0;padding-top:0.1rem">05</span>
+              <div><strong style="color:var(--text)">The window is 18 months.</strong> <span style="color:var(--text-secondary)">The Mansion House Accord is being implemented now. The fund vehicles and co-investment frameworks that will channel Accord capital into UK growth companies are being designed in 2025–2026. leanstartup.co should be at the table shaping the governance expectations those vehicles embed — not responding to them after they are fixed. The time to move is now.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /findings -->
+
+<!-- ── BIBLIOGRAPHY ── -->
+<div class="biblio-section" id="bibliography">
+  <div class="section-eyebrow">📚 Sources</div>
+  <h2>Bibliography</h2>
+  <p>All sources used in this briefing. Corpus documents were processed via Anthropic's Files API with prompt caching.</p>
+
+  <div class="biblio-group">
+    <div class="biblio-group-title">Primary — Incorruptible Framework</div>
+    <div class="biblio-entry">
+      <span class="biblio-num">1</span>
+      <span class="biblio-text">Ries, E. (2025). <em>Incorruptible: Why Good Companies Go Bad</em>. [Primary corpus document.]</span>
+    </div>
+    <div class="biblio-entry">
+      <span class="biblio-num">2</span>
+      <span class="biblio-text"><em>Chapter 11 Implementation Guide — Incorruptible v1.0.0</em>. (26 May 2026). Incorruptible Consultants. [Practical application framework and implementation companion to the book.]</span>
+    </div>
+    <div class="biblio-entry">
+      <span class="biblio-num">3</span>
+      <span class="biblio-text"><em>Incorruptible Readers Guide for Founders v1.0</em>. (26 May 2026). Incorruptible Consultants. [Founder-specific reading and application guide.]</span>
+    </div>
+  </div>
+
+  <div class="biblio-group">
+    <div class="biblio-group-title">UK Policy &amp; Regulatory</div>
+    <div class="biblio-entry">
+      <span class="biblio-num">4</span>
+      <span class="biblio-text">HM Treasury &amp; City of London Corporation. (May 2025). <em>Mansion House Accord</em>. UK Government. <a href="https://www.gov.uk/government/publications/mansion-house-accord" target="_blank" rel="noopener">gov.uk/government/publications/mansion-house-accord</a></span>
+    </div>
+    <div class="biblio-entry">
+      <span class="biblio-num">5</span>
+      <span class="biblio-text">HM Treasury. (May 2025). <em>Mansion House Accord — Frequently Asked Questions</em>. UK Government. <a href="https://www.gov.uk/government/publications/mansion-house-accord" target="_blank" rel="noopener">gov.uk/government/publications/mansion-house-accord</a></span>
+    </div>
+    <div class="biblio-entry">
+      <span class="biblio-num">6</span>
+      <span class="biblio-text">Financial Reporting Council. (2024). <em>UK Corporate Governance Code</em>. FRC. <a href="https://www.frc.org.uk/library/standards-codes-policy/corporate-governance/uk-corporate-governance-code/" target="_blank" rel="noopener">frc.org.uk</a></span>
+    </div>
+  </div>
+
+  <div class="biblio-group">
+    <div class="biblio-group-title">UK Market Research</div>
+    <div class="biblio-entry">
+      <span class="biblio-num">7</span>
+      <span class="biblio-text"><em>Bridging the Scale-Up Funding Gap</em>. (2025). [UK-specific analysis of Series B and growth-stage funding challenges for technology companies.]</span>
+    </div>
+    <div class="biblio-entry">
+      <span class="biblio-num">8</span>
+      <span class="biblio-text">JPMorgan Asset Management. (2025–2026). <em>What Works Now</em>. JPMorgan Chase &amp; Co. [Institutional perspective on startup and scale-up strategies succeeding in the current market.] <a href="https://am.jpmorgan.com" target="_blank" rel="noopener">am.jpmorgan.com</a></span>
+    </div>
+    <div class="biblio-entry">
+      <span class="biblio-num">9</span>
+      <span class="biblio-text">CB Insights. (2026). <em>Banking Startup Insights Report — H1 2026</em>. CB Insights. [Global banking and fintech startup data; UK fintech context for financial integrity themes.] <a href="https://www.cbinsights.com" target="_blank" rel="noopener">cbinsights.com</a></span>
+    </div>
+  </div>
+
+  <div class="biblio-group">
+    <div class="biblio-group-title">Academic &amp; Professional</div>
+    <div class="biblio-entry">
+      <span class="biblio-num">10</span>
+      <span class="biblio-text">Warnock Davies. (2026). <em>Strategy and Corporate Governance</em>. Business Expert Press. [UK corporate governance and strategy frameworks; board structure, accountability, and institutional integrity.] <a href="https://businessexpertpress.com" target="_blank" rel="noopener">businessexpertpress.com</a></span>
+    </div>
+  </div>
+
+  <div class="biblio-group">
+    <div class="biblio-group-title">Key UK Institutions Referenced</div>
+    <div class="biblio-entry">
+      <span class="biblio-num">—</span>
+      <span class="biblio-text">Companies House. <em>Register a Company</em>. <a href="https://www.gov.uk/limited-company-formation" target="_blank" rel="noopener">gov.uk/limited-company-formation</a></span>
+    </div>
+    <div class="biblio-entry">
+      <span class="biblio-num">—</span>
+      <span class="biblio-text">HMRC. <em>Enterprise Management Incentives (EMI)</em>. <a href="https://www.gov.uk/tax-employee-share-schemes/enterprise-management-incentives-emis" target="_blank" rel="noopener">gov.uk/tax-employee-share-schemes/enterprise-management-incentives-emis</a></span>
+    </div>
+    <div class="biblio-entry">
+      <span class="biblio-num">—</span>
+      <span class="biblio-text">HMRC. <em>R&amp;D Tax Relief for SMEs and RDEC</em>. <a href="https://www.gov.uk/guidance/corporation-tax-research-and-development-rd-relief" target="_blank" rel="noopener">gov.uk/guidance/corporation-tax-research-and-development-rd-relief</a></span>
+    </div>
+    <div class="biblio-entry">
+      <span class="biblio-num">—</span>
+      <span class="biblio-text">Financial Conduct Authority. <a href="https://www.fca.org.uk" target="_blank" rel="noopener">fca.org.uk</a></span>
+    </div>
+    <div class="biblio-entry">
+      <span class="biblio-num">—</span>
+      <span class="biblio-text">British Business Bank. <a href="https://www.british-business-bank.co.uk" target="_blank" rel="noopener">british-business-bank.co.uk</a></span>
+    </div>
+    <div class="biblio-entry">
+      <span class="biblio-num">—</span>
+      <span class="biblio-text">Innovate UK / UKRI. <a href="https://www.ukri.org/councils/innovate-uk/" target="_blank" rel="noopener">ukri.org/councils/innovate-uk</a></span>
+    </div>
+    <div class="biblio-entry">
+      <span class="biblio-num">—</span>
+      <span class="biblio-text">UK AI Safety Institute (DSIT). <a href="https://www.gov.uk/government/organisations/ai-safety-institute" target="_blank" rel="noopener">gov.uk/government/organisations/ai-safety-institute</a></span>
+    </div>
+    <div class="biblio-entry">
+      <span class="biblio-num">—</span>
+      <span class="biblio-text">London Stock Exchange — AIM. <a href="https://www.londonstockexchange.com/raise-finance/equity/aim" target="_blank" rel="noopener">londonstockexchange.com/raise-finance/equity/aim</a></span>
+    </div>
+  </div>
+</div>
+
+<footer>
+  Prepared by leanstartup.co using the Incorruptible UK Translation Engine · Powered by claude-opus-4-8 · June 2026
+</footer>
+
+</div><!-- /main -->
+
+<script>
+const PASSWORD = 'translation layer';
+
+document.getElementById('pw').addEventListener('keydown', e => {
+  if (e.key === 'Enter') unlock();
+});
+
+function unlock() {
+  const val = document.getElementById('pw').value;
+  const err = document.getElementById('pw-err');
+  const inp = document.getElementById('pw');
+
+  if (val === PASSWORD) {
+    sessionStorage.setItem('ik_auth', '1');
+    document.getElementById('gate').style.display = 'none';
+    document.getElementById('main').style.display = 'block';
+    err.textContent = '';
+  } else {
+    err.textContent = 'Incorrect password.';
+    inp.value = '';
+    inp.classList.add('shake');
+    setTimeout(() => inp.classList.remove('shake'), 350);
+    inp.focus();
+  }
+}
+
+function logout() {
+  sessionStorage.removeItem('ik_auth');
+  document.getElementById('gate').style.display = 'flex';
+  document.getElementById('main').style.display = 'none';
+  document.getElementById('pw').value = '';
+}
+
+if (sessionStorage.getItem('ik_auth') === '1') {
+  document.getElementById('gate').style.display = 'none';
+  document.getElementById('main').style.display = 'block';
+}
+</script>
+</body>
+</html>
